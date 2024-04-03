@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Gltf, useGLTF } from "@react-three/drei";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App() {
+    const garage = useGLTF("/models/bedroom.glb");
+    console.log(garage);
+    return (
+        <main>
+            <Canvas
+                shadows
+                camera={{
+                    position: [3, 0, 0.0006],
+                }}
+            >
+                <OrbitControls />
+                <ambientLight intensity={2} />
+                <Gltf
+                    src="/models/bedroom.glb"
+                    position={[0, -1.2, -0]} // Adjusted model position
+                    rotation-y={-1.6} // Adjusted model rotation
+                />
+                <directionalLight
+                    castShadow
+                    position={[10, 30, 0]}
+                    intensity={3}
+                    shadow-normalBias={0.05}
+                />
+            </Canvas>
+        </main>
+    );
 }
-
-export default App
