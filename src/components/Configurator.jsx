@@ -3,12 +3,21 @@ import { useRef } from "react";
 // Import assets
 import dots from "../assets/drag-dots.svg";
 import arrow from "../assets/arrow.png";
+import { useDispatch } from "react-redux";
+import { setColor } from "../redux/slices/colorsSlice";
+import { exteriorColors } from "../data/exteriorColorsData";
 
 // Define the Configurator component
 function Configurator() {
     // Define refs for the panel and the arrow
     const panel = useRef(null);
     const arrowRef = useRef(null);
+
+    // Get the dispatch function from the Redux store
+    const dispatch = useDispatch();
+
+    // Define refs for the color buttons
+    const colorButtonRefs = useRef([]);
 
     // Define a function to handle dragging and moving the panel
     function handleDragAndMove(event) {
@@ -55,8 +64,26 @@ function Configurator() {
         } else if (!arrowRef.current.classList.contains("down")) {
             // If the arrow is up, make it down and expand the panel
             arrowRef.current.classList.add("down");
-            panel.current.style.height = "300px";
+            panel.current.style.height = "fit-content";
         }
+    }
+
+    // Define a function to handle the click event
+    function handleColorChange(color, e) {
+        console.log("Clicked on red button");
+        // Dispatch the setColor action with the new color value
+        dispatch(setColor(color));
+
+        console.log(e.target.id);
+
+        // Add 'active' class to the clicked button and remove it from the others
+        colorButtonRefs.current.forEach((ref) => {
+            if (ref === e.target) {
+                ref.classList.add("active");
+            } else {
+                ref.classList.remove("active");
+            }
+        });
     }
 
     // Render the Configurator component
@@ -77,6 +104,21 @@ function Configurator() {
                     draggable="false"
                     className="dots"
                 />
+            </div>
+            <div className="panel-content">
+                <div className="exterior-colors">
+                    <p>Exterior Colors</p>
+                    {exteriorColors.map((color, index) => (
+                        <button
+                            key={color.value}
+                            ref={(el) => (colorButtonRefs.current[index] = el)}
+                            style={{ backgroundColor: color.value }}
+                            onClick={(e) => handleColorChange(color.value, e)}
+                            title={color.name}
+                            id={color.name}
+                        ></button>
+                    ))}
+                </div>
             </div>
         </main>
     );

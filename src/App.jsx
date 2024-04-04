@@ -20,9 +20,6 @@ export default function App() {
     // Define a ref for the loader
     const loaderRef = useRef(null);
 
-    // Use the useLoader hook to load a LUT cube texture
-    const texture = useLoader(LUTCubeLoader, "/F-6800-STD.cube");
-
     // Define an effect that runs when the loading state changes
     useEffect(() => {
         // If loading, make the loader visible and interactive
@@ -154,9 +151,8 @@ export default function App() {
                         luminanceThreshold={0.2}
                         mipmapBlur
                         luminanceSmoothing={0}
-                        intensity={1.75}
+                        intensity={1}
                     />
-                    <LUT lut={texture} />
                 </EffectComposer>
                 <OrbitControls
                     enablePan={false}
