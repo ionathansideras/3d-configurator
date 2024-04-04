@@ -7,10 +7,17 @@ function Configurator() {
     const arrowRef = useRef(null);
 
     function handleDragAndMove(event) {
+        event.preventDefault();
         const mouse = { x: 0, y: 0 };
+        const moveEvent = event.type.includes("touch")
+            ? event.touches[0]
+            : event;
         const onMouseMove = (event) => {
-            mouse.x = event.clientX - 150;
-            mouse.y = event.clientY - 25;
+            const moveEvent = event.type.includes("touch")
+                ? event.touches[0]
+                : event;
+            mouse.x = moveEvent.clientX - 150;
+            mouse.y = moveEvent.clientY - 25;
             // change the position of the panel fixed element
             panel.current.style.left = `${mouse.x}px`;
             panel.current.style.top = `${mouse.y}px`;
@@ -18,9 +25,13 @@ function Configurator() {
         const onMouseUp = () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseup", onMouseUp);
+            window.removeEventListener("touchmove", onMouseMove);
+            window.removeEventListener("touchend", onMouseUp);
         };
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseup", onMouseUp);
+        window.addEventListener("touchmove", onMouseMove);
+        window.addEventListener("touchend", onMouseUp);
     }
 
     function handleDropDown() {
@@ -46,6 +57,7 @@ function Configurator() {
                 <img
                     src={dots}
                     onMouseDown={handleDragAndMove}
+                    onTouchStart={handleDragAndMove}
                     draggable="false"
                     className="dots"
                 />
