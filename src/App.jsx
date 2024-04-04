@@ -8,20 +8,37 @@ import {
 import { Porsche } from "./components/Porsche";
 import { Effects } from "./components/Effects";
 import { Configurator } from "./components/Configurator";
+import Loader from "./components/Loader";
+import { useState, useEffect, useRef } from "react";
 
 export default function App() {
+    const [loading, setLoading] = useState(true);
+    const loaderRef = useRef(null);
+
+    useEffect(() => {
+        if (loading) {
+            loaderRef.current.style.opacity = 1;
+            loaderRef.current.style.pointerEvents = "all";
+        } else {
+            loaderRef.current.style.opacity = 0;
+            loaderRef.current.style.pointerEvents = "none";
+        }
+    }, [loading]);
+
     return (
         <>
+            <Loader loaderRef={loaderRef} />
             <Canvas
                 gl={{ logarithmicDepthBuffer: true, antialias: false }}
                 dpr={[1, 1.5]}
-                camera={{ position: [0, 0, 15], fov: 25 }}
+                camera={{ position: [0, 4, 15], fov: 25 }}
             >
                 <color attach="background" args={["#15151a"]} />
                 <Porsche
-                    rotation={[0, Math.PI / 1.5, 0]}
+                    rotation={[0, Math.PI / 5.5, 0]}
                     scale={1.5}
                     position={[0, -1.16, 0]}
+                    setLoading={setLoading}
                 />
                 <hemisphereLight intensity={0.5} />
                 <ContactShadows
@@ -36,7 +53,7 @@ export default function App() {
                 <mesh
                     scale={4}
                     position={[3, -1.161, -1.5]}
-                    rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}
+                    rotation={[-Math.PI / 2, 0, Math.PI / 5.5]}
                 >
                     <ringGeometry args={[0.9, 1, 4, 1]} />
                     <meshStandardMaterial color="white" roughness={0.75} />
@@ -44,7 +61,7 @@ export default function App() {
                 <mesh
                     scale={4}
                     position={[-3, -1.161, -1]}
-                    rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}
+                    rotation={[-Math.PI / 2, 0, Math.PI / 4.7]}
                 >
                     <ringGeometry args={[0.9, 1, 3, 1]} />
                     <meshStandardMaterial color="white" roughness={0.75} />
@@ -124,9 +141,9 @@ export default function App() {
                     enablePan={false}
                     enableZoom={true}
                     minPolarAngle={Math.PI / 4.2}
-                    maxPolarAngle={Math.PI / 2.2}
+                    maxPolarAngle={Math.PI / 2}
                     minDistance={0.3} // minimum zoom distance
-                    maxDistance={17} // maximum zoom distance
+                    maxDistance={35} // maximum zoom distance
                 />
             </Canvas>
             <Configurator />
