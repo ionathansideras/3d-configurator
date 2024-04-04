@@ -10,7 +10,7 @@ const colorsSlice = createSlice({
     name: "colors",
     // The initial state for this slice of the Redux store
     initialState: {
-        exteriorColor: "#3ff803",
+        exteriorColor: "#00ff00",
     },
     // The reducers for this slice of the Redux store
     // Reducers are functions that determine how the state should be updated in response to an action
