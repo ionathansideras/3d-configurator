@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import {
     Environment,
     Lightformer,
@@ -6,25 +6,37 @@ import {
     OrbitControls,
 } from "@react-three/drei";
 import { Porsche } from "./components/Porsche";
-import { Effects } from "./components/Effects";
 import { Configurator } from "./components/Configurator";
 import Loader from "./components/Loader";
 import { useState, useEffect, useRef } from "react";
+import { EffectComposer, Bloom, LUT } from "@react-three/postprocessing";
+import { LUTCubeLoader } from "postprocessing";
 
+// Define the App component
 export default function App() {
+    // Define a state variable for loading and a function to update it
     const [loading, setLoading] = useState(true);
+
+    // Define a ref for the loader
     const loaderRef = useRef(null);
 
+    // Use the useLoader hook to load a LUT cube texture
+    const texture = useLoader(LUTCubeLoader, "/F-6800-STD.cube");
+
+    // Define an effect that runs when the loading state changes
     useEffect(() => {
+        // If loading, make the loader visible and interactive
         if (loading) {
             loaderRef.current.style.opacity = 1;
             loaderRef.current.style.pointerEvents = "all";
         } else {
+            // If not loading, make the loader invisible and non-interactive
             loaderRef.current.style.opacity = 0;
             loaderRef.current.style.pointerEvents = "none";
         }
-    }, [loading]);
+    }, [loading]); // Depend on the loading state
 
+    // Render the App component
     return (
         <>
             <Loader loaderRef={loaderRef} />
@@ -34,6 +46,7 @@ export default function App() {
                 camera={{ position: [0, 4, 15], fov: 25 }}
             >
                 <color attach="background" args={["#15151a"]} />
+                {/* Render the Porsche component and pass the setLoading function */}
                 <Porsche
                     rotation={[0, Math.PI / 5.5, 0]}
                     scale={1.5}
@@ -136,7 +149,15 @@ export default function App() {
                         onUpdate={(self) => self.lookAt(0, 0, 0)}
                     />
                 </Environment>
-                <Effects />
+                <EffectComposer disableNormalPass>
+                    <Bloom
+                        luminanceThreshold={0.2}
+                        mipmapBlur
+                        luminanceSmoothing={0}
+                        intensity={1.75}
+                    />
+                    <LUT lut={texture} />
+                </EffectComposer>
                 <OrbitControls
                     enablePan={false}
                     enableZoom={true}
