@@ -61,10 +61,12 @@ function Configurator() {
         if (arrowRef.current.classList.contains("down")) {
             arrowRef.current.classList.remove("down");
             panel.current.style.height = "50px";
+            content.current.style.visible = "hidden";
         } else if (!arrowRef.current.classList.contains("down")) {
             // If the arrow is up, make it down and expand the panel
             arrowRef.current.classList.add("down");
-            panel.current.style.height = "fit-content";
+            panel.current.style.height = "350px";
+            content.current.style.visible = "visible";
         }
     }
 
@@ -107,7 +109,7 @@ function Configurator() {
             </div>
             <div className="panel-content">
                 <div className="exterior-colors">
-                    <p>Exterior Colors</p>
+                    <p>Exterior Color</p>
                     {exteriorColors.map((color, index) => (
                         <button
                             key={color.value}
