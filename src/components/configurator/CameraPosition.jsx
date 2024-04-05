@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { setCamera } from "../redux/store";
+import { setCamera } from "../../redux/store";
 import { useDispatch } from "react-redux";
-import car from "../assets/car.png";
-import wheel from "../assets/wheel.png";
-import tire from "../assets/tire.png";
+import car from "../../assets/car.png";
+import wheel from "../../assets/wheel.png";
+import tire from "../../assets/tire.png";
 
 // Define the CameraPosition component
 export default function CameraPosition() {

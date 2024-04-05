@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsPdfClicked } from "../redux/store";
+import { setIsPdfClicked } from "../../redux/store";
 import jsPDF from "jspdf";
-import porscheImg from "../assets/porsche-logo-png.png";
-import pdfImg from "../assets/pdf-icon.svg";
+import porscheImg from "../../assets/porsche-logo-png.png";
+import pdfImg from "../../assets/pdf-icon.svg";
 
 export default function PdfButton() {
     // Get the dispatch function from the Redux store

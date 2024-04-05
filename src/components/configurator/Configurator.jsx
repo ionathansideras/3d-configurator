@@ -1,12 +1,12 @@
 // Import necessary hooks from libraries
 import { useRef } from "react";
 // Import assets
-import dots from "../assets/drag-dots.svg";
-import arrow from "../assets/arrow.png";
+import dots from "../../assets/drag-dots.svg";
+import arrow from "../../assets/arrow.png";
 // Import the openDropDown function
-import { openDropDown } from "../helpers/openDropDown";
+import { openDropDown } from "../../helpers/openDropDown";
 // Import the dragMovePanel function
-import { dragMovePanel } from "../helpers/dragMovePanel";
+import { dragMovePanel } from "../../helpers/dragMovePanel";
 import DoorsOpen from "./DoorsOpen";
 import CameraPosition from "./CameraPosition";
 import {
@@ -15,13 +15,13 @@ import {
     setInteriorColor,
     setRimColor,
     setDiscBrakeColor,
-} from "../redux/store";
+} from "../../redux/store";
 import Colors from "./Colors";
-import { exteriorColorsData } from "../data/exteriorColorsData";
-import { seatColorsData } from "../data/seatColorsData";
-import { interiorColorsData } from "../data/interiorColorsData";
-import { setRimColorData } from "../data/setRimColorData";
-import { discBrakeColorData } from "../data/discBrakeColorData";
+import { exteriorColorsData } from "../../data/exteriorColorsData";
+import { seatColorsData } from "../../data/seatColorsData";
+import { interiorColorsData } from "../../data/interiorColorsData";
+import { setRimColorData } from "../../data/setRimColorData";
+import { discBrakeColorData } from "../../data/discBrakeColorData";
 import PdfButton from "./PdfButton";
 
 // Define the Configurator component

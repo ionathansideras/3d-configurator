@@ -1,7 +1,7 @@
 // Import necessary hooks and actions from libraries
 import React from "react";
 import Switch from "@mui/material/Switch";
-import { setIsDoorsOpen } from "../redux/store";
+import { setIsDoorsOpen } from "../../redux/store";
 import { useDispatch } from "react-redux";
 
 // Define the DoorsOpen component
