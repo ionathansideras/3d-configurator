@@ -7,8 +7,9 @@ import { useThree, useFrame } from "@react-three/fiber";
 // Define the Porsche component
 export function Porsche(props) {
     // Use the useGLTF hook to load the Porsche model from the specified path
-    const { scene, materials } = useGLTF("/models/porsche.glb");
+    const { scene, materials, nodes } = useGLTF("/models/porsche.glb");
 
+    console.log(nodes);
     // Extract the exteriorColor from the Redux store
     const { exteriorColor, isDoorsOpen, cameraState } = useSelector(
         (state) => state.selections

@@ -5,19 +5,29 @@ import { useGLTF } from "@react-three/drei";
 function doorAnimation({ isDoorsOpen }) {
     // Use the useGLTF hook to load the Porsche model from the specified path
     const { nodes } = useGLTF("/models/porsche.glb");
+    // Unified tension for a coherent start
+    const unifiedTension = 410; // A mid-value between your initial tensions
 
     // Define the animated properties for the left door
-    const { positionL, rotationZL } = useSpring({
-        positionL: isDoorsOpen ? [75, 0, -40] : [0, 0, 0],
-        rotationZL: isDoorsOpen ? -0.8 : 0,
-        config: { mass: 1, tension: 200, friction: 26 },
+    const { positionL } = useSpring({
+        positionL: isDoorsOpen ? [78, 0, -37.5] : [0, 0, 0],
+        config: { mass: 0.1, tension: 400, friction: 26 },
     });
 
     // Define the animated properties for the right door
-    const { positionR, rotationZR } = useSpring({
-        positionR: isDoorsOpen ? [-75, 0, -40] : [0, 0, 0],
-        rotationZR: isDoorsOpen ? 0.8 : 0,
-        config: { mass: 1, tension: 200, friction: 26 },
+    const { positionR } = useSpring({
+        positionR: isDoorsOpen ? [-78, 0, -37.5] : [0, 0, 0],
+        config: { mass: 0.1, tension: 400, friction: 26 },
+    });
+
+    const { rotationZR } = useSpring({
+        rotationZR: isDoorsOpen ? Math.PI / 4 : 0,
+        config: { mass: 0.1, tension: unifiedTension, friction: 26 },
+    });
+
+    const { rotationZL } = useSpring({
+        rotationZL: isDoorsOpen ? -Math.PI / 4 : 0,
+        config: { mass: 0.1, tension: unifiedTension, friction: 26 },
     });
 
     useFrame(() => {
