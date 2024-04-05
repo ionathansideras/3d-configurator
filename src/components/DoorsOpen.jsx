@@ -19,8 +19,6 @@ export default function DoorsOpen() {
     return (
         <div className="doors-open">
             <p>Open Doors</p>
-            // Render the switch and attach the handleChange function to the
-            change event
             <Switch onChange={handleChange} color="warning" />
         </div>
     );
