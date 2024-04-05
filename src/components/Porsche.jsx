@@ -1,17 +1,23 @@
-// Import the useGLTF hook from the @react-three/drei library
 import { useGLTF } from "@react-three/drei";
-// Import the useSelector and useDispatch hooks from Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { doorAnimation } from "../helpers/doorAnimation";
 
 // Define the Porsche component
 export function Porsche(props) {
     // Use the useGLTF hook to load the Porsche model from the specified path
-    const { scene, materials } = useGLTF("/models/porsche.glb");
+    const { scene, materials, nodes } = useGLTF("/models/porsche.glb");
 
     // Extract the exteriorColor from the Redux store
-    const exteriorColor = useSelector((state) => state.colors.exteriorColor);
+    const { exteriorColor, isDoorsOpen } = useSelector(
+        (state) => state.selections
+    );
 
+    // Update the material color
     materials.P918_paint.color.set(exteriorColor);
+
+    // Call the doorAnimation function with the door state
+    doorAnimation({ isDoorsOpen });
 
     // Extract the setLoading function from the props
     const { setLoading } = props;
