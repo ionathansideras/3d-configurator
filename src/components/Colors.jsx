@@ -1,9 +1,12 @@
-import { useDispatch } from "react-redux";
-import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef, useEffect } from "react";
 
-export default function Colors({ data, dispatchAction, title }) {
+export default function Colors({ data, dispatchAction, title, storeCode }) {
     // Get the dispatch function from the Redux store
     const dispatch = useDispatch();
+
+    // Get the current color value from the Redux store
+    const store = useSelector((state) => state.selections);
 
     // Define refs for the color buttons
     const colorButtonRefs = useRef([]);
@@ -22,6 +25,18 @@ export default function Colors({ data, dispatchAction, title }) {
             }
         });
     }
+
+    // Set the active color button when the component mounts based storeCode name
+    useEffect(() => {
+        colorButtonRefs.current.forEach((ref) => {
+            if (ref.id.toLowerCase() === store[storeCode].name.toLowerCase()) {
+                ref.classList.add("active");
+            } else {
+                ref.classList.remove("active");
+            }
+        });
+    }, []);
+
     return (
         <div>
             <p>{title}</p>

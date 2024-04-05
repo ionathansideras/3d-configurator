@@ -54,6 +54,7 @@ function Configurator() {
                     data={exteriorColorsData}
                     dispatchAction={setSelection}
                     title="Exterior Color"
+                    storeCode="exteriorColor"
                 />
                 <DoorsOpen />
                 <CameraPosition />
@@ -61,21 +62,25 @@ function Configurator() {
                     data={seatColorsData}
                     dispatchAction={setSeatColor}
                     title="Seat Color"
+                    storeCode="seatColor"
                 />
                 <Colors
                     data={interiorColorsData}
                     dispatchAction={setInteriorColor}
                     title="Interior Color"
+                    storeCode="interiorColor"
                 />
                 <Colors
                     data={setRimColorData}
                     dispatchAction={setRimColor}
                     title="Rim Color"
+                    storeCode="rimColor"
                 />
                 <Colors
                     data={discBrakeColorData}
                     dispatchAction={setDiscBrakeColor}
                     title="Disc Brake Color"
+                    storeCode="discBrakeColor"
                 />
                 <p>Extra</p>
                 <PdfButton />
