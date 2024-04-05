@@ -12,6 +12,12 @@ const selections = createSlice({
     initialState: {
         exteriorColor: "#00ff00",
         isDoorsOpen: false,
+        cameraState: {
+            x: -0.12753693713244801,
+            y: 2.493258296541688,
+            z: 14.849303552845102,
+        },
+        isInside: false,
     },
     // The reducers for this slice of the Redux store
     // Reducers are functions that determine how the state should be updated in response to an action
@@ -24,10 +30,19 @@ const selections = createSlice({
             // Update the isDoorsOpen property of the state with the value from the action
             state.isDoorsOpen = action.payload;
         },
+        setCamera: (state, action) => {
+            // Update the camera position with the values from the action
+            state.cameraState = action.payload;
+            if (action.payload.isInside === true) {
+                state.isInside = true;
+            } else {
+                state.isInside = false;
+            }
+        },
     },
 });
 
 // Export the generated action creators for the cars slice
 // These can be used to dispatch actions that the reducers will respond to
-export const { setSelection, setIsDoorsOpen } = selections.actions;
+export const { setSelection, setIsDoorsOpen, setCamera } = selections.actions;
 export const selectionsReducer = selections.reducer;

@@ -9,13 +9,15 @@ import { Porsche } from "./components/Porsche";
 import { Configurator } from "./components/Configurator";
 import Loader from "./components/Loader";
 import { useState, useEffect, useRef } from "react";
-import { EffectComposer, Bloom, LUT } from "@react-three/postprocessing";
-import { LUTCubeLoader } from "postprocessing";
-
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { useSelector } from "react-redux";
 // Define the App component
 export default function App() {
     // Define a state variable for loading and a function to update it
     const [loading, setLoading] = useState(true);
+
+    // Extract the exteriorColor from the Redux store
+    const { cameraState } = useSelector((state) => state.selections);
 
     // Define a ref for the loader
     const loaderRef = useRef(null);
@@ -47,7 +49,7 @@ export default function App() {
                 <Porsche
                     rotation={[0, Math.PI / 5.5, 0]}
                     scale={1.5}
-                    position={[0, -1.16, 0]}
+                    position={[cameraState.isInside ? -0.55 : 0, -1.16, 0]}
                     setLoading={setLoading}
                 />
                 <hemisphereLight intensity={0.5} />

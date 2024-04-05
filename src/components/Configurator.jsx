@@ -9,6 +9,7 @@ import { openDropDown } from "../helpers/openDropDown";
 // Import the dragMovePanel function
 import { dragMovePanel } from "../helpers/dragMovePanel";
 import DoorsOpen from "./DoorsOpen";
+import CameraPosition from "./CameraPosition";
 
 // Define the Configurator component
 function Configurator() {
@@ -38,6 +39,7 @@ function Configurator() {
             <div className="panel-content">
                 <ExteriorColors />
                 <DoorsOpen />
+                <CameraPosition />
             </div>
         </main>
     );

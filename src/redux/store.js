@@ -2,7 +2,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // Import the action creators and the reducer from the cars slice
-import { setSelection, setIsDoorsOpen } from "./slices/selectionsSlice";
+import {
+    setSelection,
+    setIsDoorsOpen,
+    setCamera,
+} from "./slices/selectionsSlice";
 import { selectionsReducer } from "./slices/selectionsSlice";
 
 // Create a Redux store
@@ -18,4 +22,4 @@ const store = configureStore({
 // The action creators are used to dispatch actions to the store
 // we export everything from the store so that we can use it in other files
 // because its better to call the action creators from the store than to call them from the slices
-export { store, setSelection, setIsDoorsOpen };
+export { store, setSelection, setIsDoorsOpen, setCamera };
