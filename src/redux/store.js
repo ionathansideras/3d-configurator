@@ -6,6 +6,8 @@ import {
     setSelection,
     setIsDoorsOpen,
     setCamera,
+    setSeatColor,
+    setInteriorColor,
 } from "./slices/selectionsSlice";
 import { selectionsReducer } from "./slices/selectionsSlice";
 
@@ -22,4 +24,11 @@ const store = configureStore({
 // The action creators are used to dispatch actions to the store
 // we export everything from the store so that we can use it in other files
 // because its better to call the action creators from the store than to call them from the slices
-export { store, setSelection, setIsDoorsOpen, setCamera };
+export {
+    store,
+    setSelection,
+    setIsDoorsOpen,
+    setCamera,
+    setSeatColor,
+    setInteriorColor,
+};

@@ -1,9 +1,7 @@
-import React, { useRef } from "react";
-import { exteriorColors } from "../data/exteriorColorsData";
 import { useDispatch } from "react-redux";
-import { setSelection } from "../redux/store";
+import { useRef } from "react";
 
-export default function ExteriorColors() {
+export default function Colors({ data, dispatchAction, title }) {
     // Get the dispatch function from the Redux store
     const dispatch = useDispatch();
 
@@ -14,7 +12,7 @@ export default function ExteriorColors() {
     function handleColorChange(color, e) {
         console.log("Clicked on red button");
         // Dispatch the setSelection action with the new color value
-        dispatch(setSelection(color));
+        dispatch(dispatchAction(color));
 
         console.log(e.target.id);
 
@@ -28,9 +26,9 @@ export default function ExteriorColors() {
         });
     }
     return (
-        <div className="exterior-colors">
-            <p>Exterior Color</p>
-            {exteriorColors.map((color, index) => (
+        <div>
+            <p>{title}</p>
+            {data.map((color, index) => (
                 <button
                     key={color.value}
                     ref={(el) => (colorButtonRefs.current[index] = el)}

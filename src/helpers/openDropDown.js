@@ -4,10 +4,12 @@ function openDropDown({ arrowRef, panel }) {
     if (arrowRef.current.classList.contains("down")) {
         arrowRef.current.classList.remove("down");
         panel.current.style.height = "50px";
+        panel.current.style.overflow = "hidden";
     } else if (!arrowRef.current.classList.contains("down")) {
         // If the arrow is up, make it down and expand the panel
         arrowRef.current.classList.add("down");
-        panel.current.style.height = "550px";
+        panel.current.style.height = "98vh";
+        panel.current.style["overflow-y"] = "scroll";
     }
 }
 

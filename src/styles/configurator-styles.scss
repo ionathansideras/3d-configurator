@@ -9,6 +9,7 @@ main {
     border-radius: 10px;
     transition: height 0.3s;
     overflow: hidden;
+    scrollbar-width: none;
 
     .panel-controls {
         display: flex;

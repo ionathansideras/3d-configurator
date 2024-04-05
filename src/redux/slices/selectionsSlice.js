@@ -18,6 +18,8 @@ const selections = createSlice({
             z: 14.849303552845102,
         },
         isInside: false,
+        seatColor: "#930007",
+        interiorColor: "#000000",
     },
     // The reducers for this slice of the Redux store
     // Reducers are functions that determine how the state should be updated in response to an action
@@ -39,10 +41,24 @@ const selections = createSlice({
                 state.isInside = false;
             }
         },
+        setSeatColor: (state, action) => {
+            // Update the seatColor property of the state with the value from the action
+            state.seatColor = action.payload;
+        },
+        setInteriorColor: (state, action) => {
+            // Update the interiorColor property of the state with the value from the action
+            state.interiorColor = action.payload;
+        },
     },
 });
 
 // Export the generated action creators for the cars slice
 // These can be used to dispatch actions that the reducers will respond to
-export const { setSelection, setIsDoorsOpen, setCamera } = selections.actions;
+export const {
+    setSelection,
+    setIsDoorsOpen,
+    setCamera,
+    setSeatColor,
+    setInteriorColor,
+} = selections.actions;
 export const selectionsReducer = selections.reducer;

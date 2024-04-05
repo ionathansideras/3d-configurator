@@ -3,13 +3,17 @@ import { useRef } from "react";
 // Import assets
 import dots from "../assets/drag-dots.svg";
 import arrow from "../assets/arrow.png";
-import ExteriorColors from "./ExteriorColors";
 // Import the openDropDown function
 import { openDropDown } from "../helpers/openDropDown";
 // Import the dragMovePanel function
 import { dragMovePanel } from "../helpers/dragMovePanel";
 import DoorsOpen from "./DoorsOpen";
 import CameraPosition from "./CameraPosition";
+import { setSelection, setSeatColor, setInteriorColor } from "../redux/store";
+import Colors from "./Colors";
+import { exteriorColorsData } from "../data/exteriorColorsData";
+import { seatColorsData } from "../data/seatColorsData";
+import { interiorColorsData } from "../data/interiorColorsData";
 
 // Define the Configurator component
 function Configurator() {
@@ -37,9 +41,23 @@ function Configurator() {
                 />
             </div>
             <div className="panel-content">
-                <ExteriorColors />
+                <Colors
+                    data={exteriorColorsData}
+                    dispatchAction={setSelection}
+                    title="Exterior Color"
+                />
                 <DoorsOpen />
                 <CameraPosition />
+                <Colors
+                    data={seatColorsData}
+                    dispatchAction={setSeatColor}
+                    title="Seat Color"
+                />
+                <Colors
+                    data={interiorColorsData}
+                    dispatchAction={setInteriorColor}
+                    title="Interior Color"
+                />
             </div>
         </main>
     );

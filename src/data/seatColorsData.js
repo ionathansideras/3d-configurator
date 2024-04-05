@@ -1,4 +1,4 @@
-export const exteriorColorsData = [
+export const seatColorsData = [
     {
         name: "Black",
         value: "#000000",
@@ -80,39 +80,7 @@ export const exteriorColorsData = [
         value: "#c0c0c0",
     },
     {
-        name: "Beige",
-        value: "#f5f5dc",
-    },
-    {
-        name: "Salmon",
-        value: "#fa8072",
-    },
-    {
-        name: "Coral",
-        value: "#ff7f50",
-    },
-    {
-        name: "Khaki",
-        value: "#f0e68c",
-    },
-    {
-        name: "Olive",
-        value: "#808000",
-    },
-    {
-        name: "Plum",
-        value: "#dda0dd",
-    },
-    {
-        name: "Navy",
-        value: "#000080",
-    },
-    {
-        name: "Azure",
-        value: "#f0ffff",
-    },
-    {
-        name: "Lavender",
-        value: "#e6e6fa",
+        name: "Dark Red",
+        value: "#930007",
     },
 ];

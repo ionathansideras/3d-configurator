@@ -7,13 +7,16 @@ import { useThree, useFrame } from "@react-three/fiber";
 // Define the Porsche component
 export function Porsche(props) {
     // Use the useGLTF hook to load the Porsche model from the specified path
-    const { scene, materials, nodes } = useGLTF("/models/porsche.glb");
+    const { scene, materials } = useGLTF("/models/porsche.glb");
 
-    console.log(nodes);
     // Extract the exteriorColor from the Redux store
-    const { exteriorColor, isDoorsOpen, cameraState } = useSelector(
-        (state) => state.selections
-    );
+    const {
+        exteriorColor,
+        isDoorsOpen,
+        cameraState,
+        seatColor,
+        interiorColor,
+    } = useSelector((state) => state.selections);
 
     // the camera from the useThree hook
     const { camera } = useThree();
@@ -25,6 +28,10 @@ export function Porsche(props) {
 
     // Update the material color
     materials.P918_paint.color.set(exteriorColor);
+    materials["P918_seat.0"].color.set(seatColor);
+    materials["movsteer_1.0.7"].color.set(interiorColor);
+    materials["P918_movsteer_1.0.2"].color.set(interiorColor);
+    materials["P918_movsteer_1.0.5"].color.set(interiorColor);
 
     // Call the doorAnimation function with the door state
     doorAnimation({ isDoorsOpen });
