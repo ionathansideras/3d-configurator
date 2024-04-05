@@ -77,6 +77,7 @@ function Configurator() {
                     dispatchAction={setDiscBrakeColor}
                     title="Disc Brake Color"
                 />
+                <p>Extra</p>
                 <PdfButton />
             </div>
         </main>
