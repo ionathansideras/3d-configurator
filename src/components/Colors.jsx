@@ -10,11 +10,8 @@ export default function Colors({ data, dispatchAction, title }) {
 
     // Define a function to handle the click event
     function handleColorChange(color, e) {
-        console.log("Clicked on red button");
         // Dispatch the setSelection action with the new color value
         dispatch(dispatchAction(color));
-
-        console.log(e.target.id);
 
         // Add 'active' class to the clicked button and remove it from the others
         colorButtonRefs.current.forEach((ref) => {
@@ -33,7 +30,7 @@ export default function Colors({ data, dispatchAction, title }) {
                     key={color.value}
                     ref={(el) => (colorButtonRefs.current[index] = el)}
                     style={{ backgroundColor: color.value }}
-                    onClick={(e) => handleColorChange(color.value, e)}
+                    onClick={(e) => handleColorChange(color, e)}
                     title={color.name}
                     id={color.name}
                 ></button>

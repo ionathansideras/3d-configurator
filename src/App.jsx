@@ -1,4 +1,4 @@
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import {
     Environment,
     Lightformer,
@@ -11,6 +11,8 @@ import Loader from "./components/Loader";
 import { useState, useEffect, useRef } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useSelector } from "react-redux";
+import { ScreenShotCamera } from "./components/ScreenShotCamera";
+
 // Define the App component
 export default function App() {
     // Define a state variable for loading and a function to update it
@@ -78,6 +80,8 @@ export default function App() {
                     <ringGeometry args={[0.9, 1, 3, 1]} />
                     <meshStandardMaterial color="white" roughness={0.75} />
                 </mesh>
+                <ScreenShotCamera />
+
                 {/* We're building a cube-mapped environment declaratively.
           Anything you put in here will be filmed (once) by a cubemap-camera
           and applied to the scenes environment, and optionally background. */}

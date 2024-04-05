@@ -8,6 +8,11 @@ import {
     setCamera,
     setSeatColor,
     setInteriorColor,
+    setRimColor,
+    setDiscBrakeColor,
+    setIsPdfClicked,
+    setPdfPhotos,
+    clearPdfPhotos,
 } from "./slices/selectionsSlice";
 import { selectionsReducer } from "./slices/selectionsSlice";
 
@@ -31,4 +36,9 @@ export {
     setCamera,
     setSeatColor,
     setInteriorColor,
+    setRimColor,
+    setDiscBrakeColor,
+    setIsPdfClicked,
+    setPdfPhotos,
+    clearPdfPhotos,
 };

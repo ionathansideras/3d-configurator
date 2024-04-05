@@ -10,7 +10,10 @@ const selections = createSlice({
     name: "selections",
     // The initial state for this slice of the Redux store
     initialState: {
-        exteriorColor: "#00ff00",
+        exteriorColor: {
+            name: "lime",
+            value: "#00ff00",
+        },
         isDoorsOpen: false,
         cameraState: {
             x: -0.12753693713244801,
@@ -18,8 +21,24 @@ const selections = createSlice({
             z: 14.849303552845102,
         },
         isInside: false,
-        seatColor: "#930007",
-        interiorColor: "#000000",
+        seatColor: {
+            name: "red",
+            value: "#ff0000",
+        },
+        interiorColor: {
+            name: "black",
+            value: "#000000",
+        },
+        rimColor: {
+            name: "black",
+            value: "#000000",
+        },
+        discBrakeColor: {
+            name: "red",
+            value: "#ff0000",
+        },
+        pdfPhotos: [],
+        isPdfClicked: false,
     },
     // The reducers for this slice of the Redux store
     // Reducers are functions that determine how the state should be updated in response to an action
@@ -49,6 +68,26 @@ const selections = createSlice({
             // Update the interiorColor property of the state with the value from the action
             state.interiorColor = action.payload;
         },
+        setRimColor: (state, action) => {
+            // Update the rimColor property of the state with the value from the action
+            state.rimColor = action.payload;
+        },
+        setDiscBrakeColor: (state, action) => {
+            // Update the discBrakeColor property of the state with the value from the action
+            state.discBrakeColor = action.payload;
+        },
+        setIsPdfClicked: (state) => {
+            // Update the isPdfClicked property of the state with the value from the action
+            state.isPdfClicked = true;
+        },
+        setPdfPhotos: (state, action) => {
+            // add the payload to the array
+            state.pdfPhotos.push(action.payload);
+            state.isPdfClicked = false;
+        },
+        clearPdfPhotos: (state) => {
+            state.pdfPhotos = [];
+        },
     },
 });
 
@@ -60,5 +99,10 @@ export const {
     setCamera,
     setSeatColor,
     setInteriorColor,
+    setRimColor,
+    setDiscBrakeColor,
+    setIsPdfClicked,
+    setPdfPhotos,
+    clearPdfPhotos,
 } = selections.actions;
 export const selectionsReducer = selections.reducer;
