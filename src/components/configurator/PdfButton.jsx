@@ -25,7 +25,8 @@ export default function PdfButton() {
 
             const maxWidth = 180; // Adjusted maximum image width
             const maxHeight = 100; // Adjusted maximum image height to accommodate two images and text
-            let lastImageBottom = 10; // Adjust starting Y-coordinate for the first image
+            let lastImageBottom = 10; // Start Y-coordinate for the first image
+            const pageWidth = pdf.internal.pageSize.getWidth(); // Get the page width for centering images
 
             pdfPhotos.forEach((photo, index) => {
                 if (
@@ -35,35 +36,49 @@ export default function PdfButton() {
                     photo = `data:image/jpeg;base64,${photo}`;
                 }
 
-                const originalWidth = 1000; // Assume fixed dimensions for simplicity
-                const originalHeight = 600;
+                const originalWidth = 1000; // Assume fixed original dimensions for simplicity
+                const originalHeight = 690;
                 const aspectRatio = originalWidth / originalHeight;
 
                 let newWidth, newHeight;
-                if (originalWidth > originalHeight) {
+
+                // Determine whether to scale based on width or height by comparing aspect ratios
+                if (aspectRatio > maxWidth / maxHeight) {
+                    // Image is "wider"
                     newWidth = maxWidth;
                     newHeight = maxWidth / aspectRatio;
                 } else {
+                    // Image is "taller"
                     newWidth = maxHeight * aspectRatio;
                     newHeight = maxHeight;
                 }
 
+                // Ensure dimensions do not exceed maximum constraints
                 newWidth = Math.min(newWidth, maxWidth);
                 newHeight = Math.min(newHeight, maxHeight);
 
-                // Adjust startY based on whether it's the first or second image
+                // Adjust startY based on previous image's bottom plus a margin
                 const startY =
-                    index === 0 ? lastImageBottom : lastImageBottom + 10; // Add a little space between images
+                    index === 0 ? lastImageBottom : lastImageBottom + 10;
 
-                pdf.addImage(photo, "JPEG", 15, startY, newWidth, newHeight);
+                // Calculate startX to center the image
+                const startX = (pageWidth - newWidth) / 2;
 
-                // Update the lastImageBottom for the next image or text placement
+                pdf.addImage(
+                    photo,
+                    "JPEG",
+                    startX,
+                    startY,
+                    newWidth,
+                    newHeight
+                );
+
+                // Update lastImageBottom for the next image or text placement
                 lastImageBottom = startY + newHeight;
             });
 
             // Your existing code for adding photos...
             const startX = 15; // X-coordinate for starting text
-            const pageWidth = pdf.internal.pageSize.getWidth();
             const endX = pageWidth - 15; // X-coordinate for ending text, assuming 15 units margin on the right as well
             const textStartY = lastImageBottom + 10; // Starting Y-coordinate for text, adjust the margin as needed
 
