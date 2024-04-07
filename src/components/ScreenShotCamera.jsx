@@ -10,7 +10,7 @@ export function ScreenShotCamera() {
     // Create a ref for the camera
     const cameraRef = useRef();
     // Get the WebGL rendering context and the scene from react-three/fiber
-    const { gl, scene } = useThree();
+    const { gl, scene, camera } = useThree();
 
     // Get the dispatch function from the Redux store
     const dispatch = useDispatch();
@@ -36,37 +36,17 @@ export function ScreenShotCamera() {
         const outputWidth = 1280;
         const outputHeight = 720;
 
-        // Capture the current renderer size to restore it later
-        const originalSize = {
-            width: gl.domElement.width,
-            height: gl.domElement.height,
-        };
+        // Temporarily adjust the renderer size for the screenshot
+        cameraRef.current.aspect = outputWidth / outputHeight;
+        cameraRef.current.updateProjectionMatrix();
 
-        // Capture the original aspect ratio to restore it later
-        const originalAspect = cameraRef.current.aspect;
+        // Render the scene with the screenshot camera
+        gl.render(scene, cameraRef.current);
 
-        try {
-            // Temporarily adjust the renderer size for the screenshot
-            gl.setSize(outputWidth, outputHeight, false); // The 'false' parameter prevents CSS styling from being affected
-            cameraRef.current.aspect = outputWidth / outputHeight;
-            cameraRef.current.updateProjectionMatrix();
+        // Capture the screenshot as a data URL
+        const dataURL = gl.domElement.toDataURL("image/png");
 
-            // Render the scene with the screenshot camera
-            gl.render(scene, cameraRef.current);
-
-            // Capture the screenshot as a data URL
-            const dataURL = gl.domElement.toDataURL("image/png");
-
-            screenshotHandler(dataURL); // Assuming screenshotHandler returns a Promise
-        } catch (error) {
-            console.error("Failed to take screenshot:", error);
-            // Handle any errors that occur during the screenshot process
-        } finally {
-            // Restore the original renderer size, primary camera aspect ratio, and projection matrix
-            gl.setSize(originalSize.width, originalSize.height, false);
-            cameraRef.current.aspect = originalAspect;
-            cameraRef.current.updateProjectionMatrix();
-        }
+        screenshotHandler(dataURL); // Assuming screenshotHandler returns a Promise
     };
 
     // Use an effect to take screenshots when isPdfClicked changes
