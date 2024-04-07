@@ -36,7 +36,7 @@ export default function PdfButton() {
                     photo = `data:image/jpeg;base64,${photo}`;
                 }
 
-                const originalWidth = 1000; // Assume fixed original dimensions for simplicity
+                const originalWidth = 1200; // Assume fixed original dimensions for simplicity
                 const originalHeight = 690;
                 const aspectRatio = originalWidth / originalHeight;
 

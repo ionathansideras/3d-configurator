@@ -31,11 +31,31 @@ export function ScreenShotCamera() {
         dispatch(setPdfPhotos(dataURL));
     };
 
-    // Define a function to take a screenshot with this camera
     const takeScreenshot = () => {
-        gl.render(scene, cameraRef.current);
-        const dataURL = gl.domElement.toDataURL("image/png");
-        screenshotHandler(dataURL);
+        // Desired output dimensions for the screenshot
+        const outputWidth = 1920;
+        const outputHeight = 1080;
+
+        // Capture the current renderer size to restore it later
+        const originalSize = {
+            width: gl.domElement.width,
+            height: gl.domElement.height,
+        };
+
+        try {
+            // Temporarily adjust the renderer size for the screenshot
+            gl.setSize(outputWidth, outputHeight, false); // The 'false' parameter prevents CSS styling from being affected
+            cameraRef.current.aspect = outputWidth / outputHeight;
+            cameraRef.current.updateProjectionMatrix();
+
+            // Render the scene with the screenshot camera and capture the screenshot
+            gl.render(scene, cameraRef.current);
+            const dataURL = gl.domElement.toDataURL("image/png");
+            screenshotHandler(dataURL);
+        } finally {
+            // Restore the original renderer size and primary camera aspect ratio
+            gl.setSize(originalSize.width, originalSize.height, false);
+        }
     };
 
     // Use an effect to take screenshots when isPdfClicked changes

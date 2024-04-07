@@ -17,7 +17,7 @@ export default function Experience({ setLoading }) {
 
     return (
         <Canvas
-            gl={{ logarithmicDepthBuffer: true, antialias: false }}
+            // gl={{ logarithmicDepthBuffer: true, antialias: false }}
             dpr={[1, 1.5]}
             camera={{ position: [0, 4, 15], fov: 25 }}
         >
