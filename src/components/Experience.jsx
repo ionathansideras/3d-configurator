@@ -20,6 +20,7 @@ export default function Experience({ setLoading }) {
             gl={{ logarithmicDepthBuffer: true, antialias: false }}
             dpr={[1, 1.5]}
             camera={{ position: [0, 4, 15], fov: 25 }}
+            className="canvas"
         >
             <color attach="background" args={["#15151a"]} />
             {/* Render the Porsche component and pass the setLoading function */}

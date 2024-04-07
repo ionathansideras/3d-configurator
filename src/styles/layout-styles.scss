@@ -1,0 +1,19 @@
+@media only screen and (orientation: portrait) {
+    .canvas {
+        height: 51vh !important;
+    }
+
+    main {
+        top: 50vh !important;
+        right: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        border-radius: 10px 10px 0 0;
+        height: 50vh !important;
+        overflow-y: scroll;
+
+        .panel-controls {
+            display: none;
+        }
+    }
+}
