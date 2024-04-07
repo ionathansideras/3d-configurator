@@ -39,7 +39,7 @@ function Configurator() {
                     ref={arrowRef}
                     onClick={() => openDropDown({ arrowRef, panel })}
                     draggable="false"
-                    className="arrow"
+                    className="arrow down"
                 />
                 <img
                     src={dots}
