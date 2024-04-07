@@ -110,7 +110,7 @@ export default function PdfButton() {
             });
 
             // Assuming the dimensions of the logo have been defined or calculated earlier
-            const logoWidth = 20; // Adjust based on the actual width of your logo
+            const logoWidth = 17; // Adjust based on the actual width of your logo
             const logoHeight = 20; // Adjust based on the actual height of your logo
             const pageHeight = pdf.internal.pageSize.getHeight();
 

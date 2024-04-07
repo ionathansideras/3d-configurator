@@ -36,7 +36,7 @@ export function ScreenShotCamera() {
         const outputWidth = 1280;
         const outputHeight = 720;
 
-        // Temporarily adjust the renderer size for the screenshot
+        // Adjust the renderer size for the screenshot
         cameraRef.current.aspect = outputWidth / outputHeight;
         cameraRef.current.updateProjectionMatrix();
 
