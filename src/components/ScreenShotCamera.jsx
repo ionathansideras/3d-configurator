@@ -31,10 +31,10 @@ export function ScreenShotCamera() {
         dispatch(setPdfPhotos(dataURL));
     };
 
-    const takeScreenshot = () => {
+    const takeScreenshot = async () => {
         // Desired output dimensions for the screenshot
-        const outputWidth = 1920;
-        const outputHeight = 1080;
+        const outputWidth = 1280;
+        const outputHeight = 720;
 
         // Capture the current renderer size to restore it later
         const originalSize = {
@@ -42,19 +42,30 @@ export function ScreenShotCamera() {
             height: gl.domElement.height,
         };
 
+        // Capture the original aspect ratio to restore it later
+        const originalAspect = cameraRef.current.aspect;
+
         try {
             // Temporarily adjust the renderer size for the screenshot
             gl.setSize(outputWidth, outputHeight, false); // The 'false' parameter prevents CSS styling from being affected
             cameraRef.current.aspect = outputWidth / outputHeight;
             cameraRef.current.updateProjectionMatrix();
 
-            // Render the scene with the screenshot camera and capture the screenshot
+            // Render the scene with the screenshot camera
             gl.render(scene, cameraRef.current);
+
+            // Capture the screenshot as a data URL
             const dataURL = gl.domElement.toDataURL("image/png");
-            screenshotHandler(dataURL);
+
+            screenshotHandler(dataURL); // Assuming screenshotHandler returns a Promise
+        } catch (error) {
+            console.error("Failed to take screenshot:", error);
+            // Handle any errors that occur during the screenshot process
         } finally {
-            // Restore the original renderer size and primary camera aspect ratio
+            // Restore the original renderer size, primary camera aspect ratio, and projection matrix
             gl.setSize(originalSize.width, originalSize.height, false);
+            cameraRef.current.aspect = originalAspect;
+            cameraRef.current.updateProjectionMatrix();
         }
     };
 
