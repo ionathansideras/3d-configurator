@@ -20,12 +20,12 @@ export function getUrlParams(url = window.location.href) {
     return new URLSearchParams(urlStr);
 }
 
-export default function VideoCall({ videoRef }) {
+export default function VideoCall() {
     const roomID = getUrlParams().get("roomID") || randomID(5);
-    videoRef = async (element) => {
+    const videoRef = async (element) => {
         // generate Kit Token
-        const appID = import.meta.env.VITE_APP_ID;
-        const serverSecret = import.meta.env.VITE_SERVER_SECRET;
+        const appID = 1457017055;
+        const serverSecret = "0b83ec20777afd14842ffa175f5a2c6b";
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
             appID,
             serverSecret,
