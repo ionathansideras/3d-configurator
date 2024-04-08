@@ -17,4 +17,10 @@
             display: none;
         }
     }
+
+    .chat-container {
+        left: 0 !important;
+        position: absolute;
+        width: 100% !important;
+    }
 }

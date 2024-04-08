@@ -1,7 +1,9 @@
 import OpenAI from "openai";
 
+const key = import.meta.env.VITE_OPENAI_API_KEY;
+
 const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    apiKey: "123",
     dangerouslyAllowBrowser: true,
 });
 
@@ -10,9 +12,7 @@ export async function createPorsche918ChatApi(question) {
         messages: [
             {
                 role: "system",
-                content: `You are an expert on the Porsche 918 Spyder. 
-                    Provide detailed and accurate information about the Porsche 918 Spyder in response to user queries.
-                    Your responses should be informative and cover topics such as specifications, performance, history, and unique features of the Porsche 918 Spyder.`,
+                content: `Given your expertise in the Porsche 918 Spyder, your responses should be strictly limited to information about the Porsche 918. Please ensure your answers are concise and directly related to the Porsche 918, avoiding any deviations or unrelated content.`,
             },
             {
                 role: "user",

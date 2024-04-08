@@ -15,15 +15,6 @@ const chat = createSlice({
                 type: "ai",
                 content: "Hello! How can I help you today?",
             },
-            {
-                type: "user",
-                content: "I'm interested in the Porsche 918 Spyder.",
-            },
-            {
-                type: "ai",
-                content:
-                    "Great choice! What would you like to know about the Porsche 918 Spyder?",
-            },
         ],
     },
     // The reducers for this slice of the Redux store

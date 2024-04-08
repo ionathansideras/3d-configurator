@@ -50,14 +50,20 @@ function Configurator() {
                 />
             </div>
             <div className="panel-content">
+                <CameraPosition />
+                <p>Extra</p>
+                <div className="extra">
+                    <PdfButton />
+                    <Chat />
+                </div>
+                <DoorsOpen />
+
                 <Colors
                     data={exteriorColorsData}
                     dispatchAction={setSelection}
                     title="Exterior Color"
                     storeCode="exteriorColor"
                 />
-                <DoorsOpen />
-                <CameraPosition />
                 <Colors
                     data={seatColorsData}
                     dispatchAction={setSeatColor}
@@ -82,9 +88,6 @@ function Configurator() {
                     title="Disc Brake Color"
                     storeCode="discBrakeColor"
                 />
-                <p>Extra</p>
-                <PdfButton />
-                <Chat />
             </div>
         </main>
     );

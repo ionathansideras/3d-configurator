@@ -5,7 +5,9 @@ import { useRef, useState, useEffect } from "react";
 // Import the addMessage action from the Redux store
 import { addMessage } from "../redux/store";
 // Import the chat API
-import { createPorsche918ChatApi } from "../../chatGptApi";
+import { createPorsche918ChatApi } from "../apis/chatGptApi";
+import chatimg from "../assets/chatimg.svg";
+import closeimg from "../assets/close.svg";
 
 // Define the Chat component
 export default function Chat() {
@@ -53,9 +55,11 @@ export default function Chat() {
     // Render the Chat component
     return (
         <>
-            <h4 className="chat-button" onClick={handleOpenChat}>
-                Chat
-            </h4>
+            <img
+                className="chat-button"
+                src={chatimg}
+                onClick={handleOpenChat}
+            ></img>
             <div className="chat-container" ref={chatContainerRef}>
                 <div className="chat-messages" ref={chatRef}>
                     {messages.map((message, index) => {
@@ -82,6 +86,11 @@ export default function Chat() {
                         onChange={(e) => setMessage(e.target.value)}
                     />
                     <button className="chat-send">Send</button>
+                    <img
+                        src={closeimg}
+                        className="chat-close"
+                        onClick={handleOpenChat}
+                    ></img>
                 </form>
             </div>
         </>

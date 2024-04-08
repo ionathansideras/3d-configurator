@@ -93,14 +93,20 @@ main {
             }
         }
 
-        .pdf-button {
-            width: 40px;
-            cursor: pointer;
+        .extra {
+            display: flex;
+            align-items: center;
             margin-bottom: 20px;
-            transition: transform 0.3s;
 
-            &:hover {
-                transform: scale(1.1);
+            .pdf-button {
+                margin-right: 10px;
+                width: 40px;
+                cursor: pointer;
+                transition: transform 0.3s;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
     }
