@@ -1,5 +1,5 @@
 // Import necessary hooks from libraries
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 // Import assets
 import dots from "../../assets/drag-dots.svg";
 import arrow from "../../assets/arrow.png";
