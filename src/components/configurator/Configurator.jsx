@@ -1,5 +1,5 @@
 // Import necessary hooks from libraries
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 // Import assets
 import dots from "../../assets/drag-dots.svg";
 import arrow from "../../assets/arrow.png";
@@ -23,17 +23,13 @@ import { interiorColorsData } from "../../data/interiorColorsData";
 import { setRimColorData } from "../../data/setRimColorData";
 import { discBrakeColorData } from "../../data/discBrakeColorData";
 import PdfButton from "./PdfButton";
-import {createPorsche918ChatApi} from "../../../chatGptApi.js";
+import Chat from "../Chat.jsx";
 
 // Define the Configurator component
 function Configurator() {
     // Define refs for the panel and the arrow
     const panel = useRef(null);
     const arrowRef = useRef(null);
-
-    useEffect(() => {
-        createPorsche918ChatApi('how to change the color of the car?');
-    }, []);
     // Render the Configurator component
     return (
         <main ref={panel}>
@@ -88,6 +84,7 @@ function Configurator() {
                 />
                 <p>Extra</p>
                 <PdfButton />
+                <Chat />
             </div>
         </main>
     );

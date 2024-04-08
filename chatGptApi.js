@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true
+    dangerouslyAllowBrowser: true,
 });
 
 export async function createPorsche918ChatApi(question) {
@@ -23,7 +23,6 @@ export async function createPorsche918ChatApi(question) {
     });
 
     console.log(chatCompletion.choices[0].message.content);
-
     // Assuming the response format you require is text, not a JSON object like in the Korean language teacher example.
     // If you need a specific response format, adjust the response processing accordingly.
     return chatCompletion.choices[0].message.content;

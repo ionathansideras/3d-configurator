@@ -15,12 +15,14 @@ import {
     clearPdfPhotos,
 } from "./slices/selectionsSlice";
 import { selectionsReducer } from "./slices/selectionsSlice";
+import { chatReducer, addMessage } from "./slices/chatSlice";
 
 // Create a Redux store
 // The store is configured with reducers for the 'cars' and 'form' slices of the state
 const store = configureStore({
     reducer: {
         selections: selectionsReducer, // The reducer for the 'colors' slice of the state
+        chat: chatReducer,
     },
 });
 
@@ -41,4 +43,5 @@ export {
     setIsPdfClicked,
     setPdfPhotos,
     clearPdfPhotos,
+    addMessage,
 };

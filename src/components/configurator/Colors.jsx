@@ -42,6 +42,7 @@ export default function Colors({ data, dispatchAction, title, storeCode }) {
             <p>{title}</p>
             {data.map((color, index) => (
                 <button
+                    className="color-button"
                     key={color.value}
                     ref={(el) => (colorButtonRefs.current[index] = el)}
                     style={{ backgroundColor: color.value }}
