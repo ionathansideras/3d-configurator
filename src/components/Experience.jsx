@@ -10,6 +10,7 @@ import { Porsche } from "./Porsche";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { ScreenShotCamera } from "./ScreenShotCamera";
 import { useSelector } from "react-redux";
+import { VideoMesh } from "./VideoMesh";
 
 export default function Experience({ setLoading }) {
     // Extract the exteriorColor from the Redux store
@@ -31,6 +32,7 @@ export default function Experience({ setLoading }) {
                 setLoading={setLoading}
             />
             <hemisphereLight intensity={0.5} />
+            <VideoMesh />
             <ContactShadows
                 resolution={1024}
                 frames={1}

@@ -2,7 +2,8 @@ import { Configurator } from "./components/configurator/Configurator";
 import Loader from "./components/Loader";
 import Experience from "./components/Experience";
 import { useState, useEffect, useRef } from "react";
-
+import VideoCall from "./components/VideoCall";
+import url from "./assets/video1.mp4";
 // Define the App component
 export default function App() {
     // Define a state variable for loading and a function to update it
@@ -30,6 +31,7 @@ export default function App() {
             <Loader loaderRef={loaderRef} />
             <Experience setLoading={setLoading} />
             <Configurator />
+            <VideoCall />
         </>
     );
 }
