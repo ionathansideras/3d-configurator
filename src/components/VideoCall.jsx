@@ -24,8 +24,9 @@ export default function VideoCall() {
     const roomID = getUrlParams().get("roomID") || randomID(5);
     const videoRef = async (element) => {
         // generate Kit Token
-        const appID = 1457017055;
-        const serverSecret = "0b83ec20777afd14842ffa175f5a2c6b";
+        const appID = +import.meta.env.VITE_APP_ID;
+        const serverSecret = import.meta.env.VITE_SERVER_SECRET;
+        console.log(appID, serverSecret);
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
             appID,
             serverSecret,
