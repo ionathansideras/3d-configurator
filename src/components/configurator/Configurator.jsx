@@ -23,7 +23,7 @@ import { interiorColorsData } from "../../data/interiorColorsData";
 import { setRimColorData } from "../../data/setRimColorData";
 import { discBrakeColorData } from "../../data/discBrakeColorData";
 import PdfButton from "./PdfButton";
-import Chat from "../Chat.jsx";
+import Chat from "./Chat.jsx";
 
 // Define the Configurator component
 function Configurator() {

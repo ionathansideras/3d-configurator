@@ -3,11 +3,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 // Import the addMessage action from the Redux store
-import { addMessage } from "../redux/store";
+import { addMessage } from "../../redux/store";
 // Import the chat API
-import { createPorsche918ChatApi } from "../apis/chatGptApi";
-import chatimg from "../assets/chatimg.svg";
-import closeimg from "../assets/close.svg";
+import { createPorsche918ChatApi } from "../../apis/chatGptApi";
+import chatimg from "../../assets/chatimg.svg";
+import closeimg from "../../assets/close.svg";
 
 // Define the Chat component
 export default function Chat() {
