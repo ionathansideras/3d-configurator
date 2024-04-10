@@ -10,16 +10,13 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@azure/msal-browser": "^3.11.1",
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.5",
-        "@microsoft/teams-js": "^2.21.0",
         "@mui/material": "^5.15.15",
         "@react-three/drei": "^9.104.1",
         "@react-three/fiber": "^8.16.1",
         "@react-three/postprocessing": "^2.16.2",
         "@reduxjs/toolkit": "^2.2.3",
-        "@zegocloud/zego-uikit-prebuilt": "^2.0.1",
         "jspdf": "^2.5.1",
         "openai": "^4.33.0",
         "react": "^18.2.0",
