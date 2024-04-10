@@ -15,6 +15,8 @@ Welcome to the Porsche Configurator, the ultimate tool for customizing your virt
 -   **React**: For building a dynamic and responsive UI.
 -   **Redux**: For managing and centralizing application state.
 -   **React Three Fiber & React Three Drei**: For integrating Three.js into the React environment, making 3D rendering a breeze.
+-   **SCSS**: For advanced styling options, allowing us to utilize variables, nested rules, mixins, and more for a more efficient and manageable styling process.
+
 -   **Three.js**: The backbone of our 3D world, providing the tools necessary for rendering models and environments.
 -   **jsPDF**: For generating downloadable PDFs that capture the essence of your customized Porsche.
 -   **OpenAI**: Powering our intelligent AI assistant, making it possible to interact with users through natural language processing.
