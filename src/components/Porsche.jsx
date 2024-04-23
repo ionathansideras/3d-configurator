@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { MeshReflectorMaterial, useGLTF } from "@react-three/drei";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { doorAnimation } from "../helpers/doorAnimation";
@@ -48,5 +48,9 @@ export function Porsche(props) {
     setLoading(false);
 
     // Return a primitive component with the loaded scene and any other passed props
-    return <primitive object={scene} {...props} />;
+    return (
+        <>
+            <primitive object={scene} {...props} />
+        </>
+    );
 }

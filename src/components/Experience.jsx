@@ -5,6 +5,7 @@ import {
     Lightformer,
     ContactShadows,
     OrbitControls,
+    MeshReflectorMaterial,
 } from "@react-three/drei";
 import { Porsche } from "./Porsche";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
@@ -23,6 +24,7 @@ export default function Experience({ setLoading }) {
             className="canvas"
         >
             <color attach="background" args={["#15151a"]} />
+            <fog attach="fog" args={["#15151a", 10, 100]} />
             {/* Render the Porsche component and pass the setLoading function */}
             <Porsche
                 rotation={[0, Math.PI / 5.5, 0]}
@@ -55,6 +57,21 @@ export default function Experience({ setLoading }) {
             >
                 <ringGeometry args={[0.9, 1, 3, 1]} />
                 <meshStandardMaterial color="white" roughness={0.75} />
+            </mesh>
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[3, -1.162, -1.5]}>
+                <planeGeometry args={[170, 170]} />
+                <MeshReflectorMaterial
+                    blur={[300, 100]}
+                    resolution={1024}
+                    mixBlur={0.1}
+                    mixStrength={70}
+                    roughness={1}
+                    depthScale={1.2}
+                    mixDepthThreshold={0.4}
+                    maxDepthThreshold={1.4}
+                    color="#0a0a0a"
+                    metalness={0.5}
+                />
             </mesh>
             <ScreenShotCamera />
 
