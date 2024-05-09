@@ -1,4 +1,4 @@
-import { MeshReflectorMaterial, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { doorAnimation } from "../helpers/doorAnimation";

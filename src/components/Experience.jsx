@@ -34,8 +34,9 @@ export default function Experience({ setLoading }) {
             />
             <hemisphereLight intensity={0.5} />
             <ContactShadows
-                resolution={1024}
-                frames={1}
+                key={JSON.stringify(cameraState)}
+                resolution={2024}
+                frames={50}
                 position={[0, -1.16, 0]}
                 scale={15}
                 blur={0.5}
