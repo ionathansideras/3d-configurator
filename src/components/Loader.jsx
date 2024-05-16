@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/porsche-logo.svg";
+import logo from "../assets/porsche-logo.webp";
 
 export default function Loader({ loaderRef }) {
     return (
